@@ -1,5 +1,5 @@
 [package]
-name = "rust-book-12"
+name = "minigrep"
 version = "0.1.0"
 edition = "2021"
 
