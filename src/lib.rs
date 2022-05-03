@@ -8,7 +8,6 @@ pub struct Config {
 
 impl Config {
     pub fn new(args: &[String]) -> Result<Config, &'static str> {
-        // --snip--
         if args.len() < 3 {
             return Err("not enough arguments");
         }
@@ -21,11 +20,27 @@ impl Config {
 }
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    // --snip--
     let contents = fs::read_to_string(config.filename)?;
-
-    println!("With text:\n{}", contents);
 
     Ok(())
 }
 
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    vec![]
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn one_result() {
+        let query = "duct";
+        let contents = "\
+Rust:
+safe, fast, productive.
+Pick three.";
+
+        assert_eq!(vec!["safe, fast, productive."], search(query, contents));
+    }
+}
